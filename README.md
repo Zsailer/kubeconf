@@ -1,6 +1,6 @@
-# Kubeconf
+# kubeconf
 
-**A lightweight Python module for creating, manipulating, and editing kubeconfig files**
+**Lightweight Python module for creating, manipulating, and editing kubeconfig files**
 
 *Why not use or wrap `kubectl config`?*
 
