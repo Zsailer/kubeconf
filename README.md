@@ -3,8 +3,7 @@
 **Lightweight Python module for creating, manipulating, and editing kubeconfig files**
 
 *Why not use or wrap `kubectl config`?*
-
-`kubectl config` is great, but it's pretty restrictive in what you can change. I wanted more control over my kubenetes config and integrate into Python pipelines. *kubeconf* gives me that control. It does not use *kubectl* at all.
+`kubectl config` is great and writing a Python wrapper is a fine solution. However, `kubectl config` is quite limited in functionality. I wanted more control over my kubernetes config. *kubeconfig* gives me that control. It doesn't use *kubectl* at all. Rather, it reads, edits, and writes config files entirely on its own. 
 
 ## Getting starting
 
