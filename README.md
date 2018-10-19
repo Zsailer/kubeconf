@@ -39,8 +39,11 @@ k.add_user(
 k.add_context(
     name='mycontext',
     cluster_name='mycluster',
-
+    user_name='me'
 )
+
+# Commit change to the file.
+k.close()
 ```
 
 ## Developing
