@@ -1,6 +1,7 @@
 import os
 import yaml
 import pathlib
+import pprint
 
 from traitlets.config import Configurable
 from traitlets_paths import Path
@@ -121,6 +122,13 @@ class KubeConf(Configurable):
                 return cluster
         raise KubeConfError("Cluster name not found.")
 
+    def print_clusters(self, names=False):
+        """Print contexts."""
+        clusters = self.get_clusters()
+        if names:
+            clusters = [cluster['name'] for cluster in clusters]
+        pprint.pprint(clusters)
+
     def get_clusters(self):
         """Get all clusters in config."""
         return self.data['clusters']   
@@ -193,6 +201,13 @@ class KubeConf(Configurable):
         """Get all users in config."""
         return self.data['users']   
 
+    def print_users(self, names=False):
+        """Print users"""
+        users = self.get_users()
+        if names:
+            users = [user['name'] for user in users]
+        pprint.pprint(users)
+
     def add_user(
         self,
         name, 
@@ -244,7 +259,7 @@ class KubeConf(Configurable):
         # Add exec option.
         exec_options = {
             'command': command,
-            'env': env
+            'env': env,
             'args': args,
         }
         exec_options.update(attrs)
@@ -272,6 +287,13 @@ class KubeConf(Configurable):
     def get_contexts(self):
         """Get all contexts in config."""
         return self.data['contexts']   
+
+    def print_contexts(self, names=False):
+        """Print users"""
+        contexts = self.get_contexts()
+        if names:
+            contexts = [context['name'] for context in contexts]
+        pprint.pprint(contexts)     
 
     def add_context(
         self,
@@ -331,4 +353,6 @@ class KubeConf(Configurable):
         else:
             raise KubeConfError("Context does not exist.")
 
-    
+    def show(self):
+        """Print the contexts of the kubeconfig."""
+        print(self.path.read_text())
