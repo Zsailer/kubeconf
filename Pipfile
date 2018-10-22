@@ -5,11 +5,14 @@ name = "pypi"
 
 [packages]
 pyyaml = "*"
-ipython = "*"
 traitlets-paths = "*"
+traitlets = "*"
 
 [dev-packages]
 ipython = "*"
+sphinx = "*"
+pylint = "*"
+sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.7"
