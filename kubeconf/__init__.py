@@ -1,1 +1,1 @@
-from .kubeconf import KubeConf
+from .kubeconf import KubeConf, get_kube_path
