@@ -13,6 +13,7 @@ ipython = "*"
 sphinx = "*"
 pylint = "*"
 sphinx-rtd-theme = "*"
+black = "*"
 
 [requires]
 python_version = "3.7"

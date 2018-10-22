@@ -5,7 +5,7 @@ import pprint
 
 from traitlets.config import Configurable
 from traitlets_paths import Path
-from traitlets import default
+from traitlets import default, Unicode
 
 def get_kube_path():
     """Get the current config path. If the KUBECONFIG environment 
@@ -44,6 +44,14 @@ class KubeConf(Configurable):
     def _default_path(self):
         return get_kube_path()
 
+    context = Unicode(
+        help="Current kube context."
+    ).tag(config=True)
+
+    @default('context')
+    def _default_context(self):
+        return self.get_current_context()
+
     @property
     def data(self):
         try:
@@ -54,6 +62,16 @@ class KubeConf(Configurable):
     @data.setter
     def data(self, data):
         self._data = data
+
+    def __init__(self, **traits):
+        # Pass configurations to traitlets base class
+        super().__init__(**traits)
+        
+        # If current context and user specified context are not the same, switch context.
+        if self.context != self.get_current_context():
+            self.open()
+            self.set_current_context(self.context)
+            self.close()
 
     def open(self, create_if_not_found=True):
         """Open a kube config file. If the file does not
@@ -352,6 +370,10 @@ class KubeConf(Configurable):
             self.data['current-context'] = name
         else:
             raise KubeConfError("Context does not exist.")
+
+    def get_current_context(self):
+        data = self._read()
+        return data['current-context']
 
     def show(self):
         """Print the contexts of the kubeconfig."""
