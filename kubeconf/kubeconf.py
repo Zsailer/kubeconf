@@ -374,6 +374,7 @@ class KubeConf(Configurable):
             raise KubeConfError("Context does not exist.")
 
     def get_current_context(self):
+        """Get the current context found in kubeconfig."""
         data = self._read()
         return data['current-context']
 
