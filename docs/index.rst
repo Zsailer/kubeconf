@@ -33,6 +33,9 @@ Basic Usage
     # Initialize your file.
     k = KubeConf(path='path/to/config')
 
+    # Open the file.
+    k.open()
+
     # Add a cluster
     k.add_cluster(
         name='mycluster',
