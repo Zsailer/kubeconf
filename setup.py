@@ -10,7 +10,7 @@ with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='kubeconf',
-    version='0.0.3',
+    version='0.0.4',
     author='Zach Sailer',
     author_email='zachsailer@gmail.com',
     description='Lightweight Python module for creating, manipulating, and editing kubeconfig files',

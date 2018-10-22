@@ -38,7 +38,9 @@ class KubeConfNotOpenError(Exception):
 class KubeConf(Configurable):
     """Base object that interacts with kubeconfig file.
     """
-    path = Path(help="Path to kubeconfig.")
+    path = Path(
+        help="Path to kubeconfig."
+    ).tag(config=True)
 
     @default('path')
     def _default_path(self):
