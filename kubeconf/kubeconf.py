@@ -112,6 +112,10 @@ class KubeConf(Configurable):
         delattr(self, '_data')
         return self
 
+    def as_yaml(self):
+        """Show data as YAML"""
+        return yaml.dump(self.data, default_flow_style=False)
+
     def _read(self):
         """Read the kube config file. 
         """
@@ -121,7 +125,7 @@ class KubeConf(Configurable):
 
     def _write(self, data):
         """Write data to config file."""
-        stream = yaml.dump(data)
+        stream = yaml.dump(data, default_flow_style=False)
         self.path.write_text(stream)
 
     # --------------- Clusters ------------------
